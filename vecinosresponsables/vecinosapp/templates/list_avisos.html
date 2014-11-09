@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+
+{% block htmltitle %}
+{{ block.super }} | Ver Problemas
+{% endblock htmltitle %}
+
+{% block main %}
+
+{% if mensaje %}
+    <div class="mensaje">{{ mensaje }}</div>
+{% endif %}
+        <h2>Ver Avisos</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Comentario</th>
+                    <th>Imagen</th>
+                    <th>Fecha</th>
+					<th>Resolver</th>
+                </tr>
+            </thead>
+		
+        {% for foo in aviso %}
+            <tbody>
+                <tr>
+                    <td>{{ foo.comentario }}</td>
+                    <td><img src="{{ MEDIA_URL }}{{ foo.imagen }}" width="200" height="200"></td>
+                    <td>{{ foo.fecha }}</td>
+					<td><a href="{% url 'resolver' foo.id %}"><i class="icon-ok"></i></a></td>
+                </tr>
+            </tbody>
+        {% endfor %}
+		
+        </table>
+
+{% endblock main %}
